@@ -19,7 +19,7 @@ data = [ele for ele in data if ele.get('co2')]
 lags = [i for i in range(40)]
 
 # co2 series by month
-months = [ele['year&month'] for ele in data]
+months = [ele['month'] for ele in data]
 series = [float(ele['co2']) for ele in data]
 
 # stats
@@ -57,16 +57,17 @@ plt.ylabel('co2 concentration')
 plt.savefig('./acf_scatter.png')
 
 plt.clf()
-
 plt.bar(lags, corrs)
 plt.xlabel('lags')
 plt.ylabel('co2 concentration')
 plt.savefig('./acf_bar.png')
 
-# # plot monthly co2 trend
-# plt.plot(months[:40], [math.log(ele) for ele in series[:40]])
-# plt.xlabel('month')
-# plt.ylabel('co2 concentration')
-# plt.savefig('./monthly_trend_scatter.png')
+# plot monthly co2 trend
+plt.clf()
+plt.rcParams['xtick.labelsize'] = 5
+plt.plot([ 'y' + str(i+1)+ '.m' +ele for i, ele in enumerate(months[:14])], [math.log(ele) for ele in series[:14]])
+plt.xlabel('month')
+plt.ylabel('co2 concentration (log scale)')
+plt.savefig('./monthly_trend_scatter.png')
 
 
