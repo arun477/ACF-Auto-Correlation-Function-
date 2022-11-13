@@ -50,16 +50,23 @@ def get_acf(series, lags, mean, total):
 
 corrs = get_acf(series, lags, mean, total)
 
-# # plot acf
-# plt.plot(lags, corrs)
-# plt.xlabel('lags')
-# plt.ylabel('co2 concentration')
-# plt.savefig('./acf_scatter.png')
-
-# plot monthly co2 trend
-plt.plot(months[:40], [math.log(ele) for ele in series[:40]])
-plt.xlabel('month')
+# plot acf
+plt.plot(lags, corrs)
+plt.xlabel('lags')
 plt.ylabel('co2 concentration')
-plt.savefig('./monthly_trend_scatter.png')
+plt.savefig('./acf_scatter.png')
+
+plt.clf()
+
+plt.bar(lags, corrs)
+plt.xlabel('lags')
+plt.ylabel('co2 concentration')
+plt.savefig('./acf_bar.png')
+
+# # plot monthly co2 trend
+# plt.plot(months[:40], [math.log(ele) for ele in series[:40]])
+# plt.xlabel('month')
+# plt.ylabel('co2 concentration')
+# plt.savefig('./monthly_trend_scatter.png')
 
 
